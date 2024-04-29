@@ -10,8 +10,7 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
 public class FormSD extends WebSetup {
-    MainPage mainPage;
-    FormPage formPage;
+    private FormPage formPage;
 
     @Given("the user is on the demoqa main page using {string}")
     public void theUserIsOnTheDemoqaMainPageUsing(String arg0) {
@@ -27,7 +26,7 @@ public class FormSD extends WebSetup {
     @Given("navigates to the registration form")
     public void navigatesToTheRegistrationForm() {
         try {
-            mainPage = new MainPage(driver);
+            MainPage mainPage = new MainPage(driver);
             formPage = new FormPage(driver);
             mainPage.navigateToFormPage();
             formPage.openPracticeForm();
@@ -53,7 +52,7 @@ public class FormSD extends WebSetup {
     public void submitTheForm() {
         try {
             formPage.submitForm();
-            //Thread.sleep(10000);
+            Thread.sleep(3000);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
@@ -64,6 +63,7 @@ public class FormSD extends WebSetup {
     @Then("they should see a welcome message")
     public void theyShouldSeeAWelcomeMessage() {
         try {
+
             Assertions.assertEquals("Thanks for submitting the form", formPage.getThanksMessage());
 
             Assertions.assertEquals(formPage.getStudentNameMessage(),

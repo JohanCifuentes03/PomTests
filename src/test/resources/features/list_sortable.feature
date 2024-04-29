@@ -11,4 +11,4 @@ Feature: Sort list in interaction page
     Examples:
       | webBrowser |
       | CHROME     |
-      #| EDGE       |
+      | EDGE       |
