@@ -6,23 +6,55 @@ import co.com.sofka.setup.WebSetup;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class SortableListSD extends WebSetup {
     private OrderListPage orderListPage;
+
     @Given("navigates to the interactions list page")
     public void navigatesToTheInteractionsListPage() {
-        MainPage mainPage = new MainPage(driver);
-        orderListPage = new OrderListPage(driver);
-        mainPage.navigateToInteractionsPage();
-        orderListPage.openSortableListSection();
-
+        try {
+            MainPage mainPage = new MainPage(driver);
+            orderListPage = new OrderListPage(driver);
+            mainPage.navigateToInteractionsPage();
+            orderListPage.openSortableListSection();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+            quiteDrive();
+        }
     }
+
     @When("orders the item's list")
     public void ordersTheItemSList() {
-
+        try {
+            orderListPage.sortElements();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+            quiteDrive();
+        }
     }
+
     @Then("items should be ordered")
     public void itemsShouldBeOrdered() {
-        quiteDrive();
+        try {
+            List<WebElement> originalReversed = new ArrayList<>(orderListPage.getOriginalWebElements());
+            Collections.reverse(originalReversed);
+            List<WebElement> modified = orderListPage.getModifiedWebElements();
+            Assertions.assertEquals(originalReversed, modified);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Assertions.fail();
+        } finally {
+            quiteDrive();
+        }
     }
 }
+
+

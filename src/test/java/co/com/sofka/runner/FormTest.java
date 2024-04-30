@@ -9,8 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/user_register.feature",
         glue = "co.com.sofka.stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE,
-        publish = true,
-        tags = "@happy_path"
+        publish = true
 )
 public class FormTest {
 }

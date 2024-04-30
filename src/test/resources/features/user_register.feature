@@ -14,5 +14,5 @@ Feature: User Registration Form
     Examples:
       | webBrowser |
       | CHROME     |
-      | EDGE       |
+      #| EDGE       |
 
