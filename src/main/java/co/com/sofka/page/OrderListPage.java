@@ -26,9 +26,15 @@ public class OrderListPage extends CommonFunctions {
     public void sortElements() {
         List<WebElement> webElements = driver.findElements(PRACTICE_ELEMENTS_LIST);
         originalWebElements = webElements;
+        scrollTo(PRACTICE_ELEMENTS_LIST);
 
         int lastIndex = webElements.size() - 1;
         for (int i = 0; i < webElements.size(); i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             WebElement firstElement = webElements.get(0);
             WebElement lastElement = webElements.get(lastIndex -  i);
             Actions actions = new Actions(driver);

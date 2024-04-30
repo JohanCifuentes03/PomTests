@@ -3,6 +3,7 @@ package co.com.sofka.page.functions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class CommonFunctions {
     protected final WebDriver driver;
@@ -15,8 +16,16 @@ public class CommonFunctions {
         driver.findElement(locator).sendKeys(text);
     }
 
+    protected void typeInto(WebElement element, String text) {
+        element.sendKeys(text);
+    }
+
     protected void clickSelection(By locator){
         driver.findElement(locator).click();
+    }
+
+    protected void clickSelection(WebElement element){
+        element.click();
     }
     protected void sendKeys(By locator, String text){
         driver.findElement(locator).sendKeys(text);
@@ -26,9 +35,17 @@ public class CommonFunctions {
         JavascriptExecutor jse =  (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(locator));
     }
+    protected void scrollTo(WebElement element){
+        JavascriptExecutor jse =  (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].scrollIntoView();", element);
+    }
 
     protected String getText(By locator){
         return driver.findElement(locator).getText();
+    }
+
+    protected String getText(WebElement element){
+        return element.getText();
     }
 
 }

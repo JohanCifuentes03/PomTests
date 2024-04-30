@@ -1,6 +1,6 @@
 package co.com.sofka.stepdefinitions;
 
-import co.com.sofka.page.FormPage;
+import co.com.sofka.page.FormPageFactory;
 import co.com.sofka.page.MainPage;
 import co.com.sofka.setup.WebSetup;
 import co.com.sofka.webenums.WebBrowser;
@@ -10,7 +10,7 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
 public class FormSD extends WebSetup {
-    private FormPage formPage;
+    private FormPageFactory formPageFactory;
 
     @Given("the user is on the demoqa main page using {string}")
     public void theUserIsOnTheDemoqaMainPageUsing(String arg0) {
@@ -27,9 +27,9 @@ public class FormSD extends WebSetup {
     public void navigatesToTheRegistrationForm() {
         try {
             MainPage mainPage = new MainPage(driver);
-            formPage = new FormPage(driver);
+            formPageFactory = new FormPageFactory(driver);
             mainPage.navigateToFormPage();
-            formPage.openPracticeForm();
+            formPageFactory.openPracticeForm();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
@@ -40,7 +40,7 @@ public class FormSD extends WebSetup {
     @When("they enter their data correctly")
     public void theyEnterTheirDataCorrectly() {
         try {
-            formPage.fillOutForm();
+            formPageFactory.fillOutForm();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
@@ -51,8 +51,7 @@ public class FormSD extends WebSetup {
     @When("submit the form")
     public void submitTheForm() {
         try {
-            formPage.submitForm();
-            Thread.sleep(3000);
+            formPageFactory.submitForm();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
@@ -64,16 +63,16 @@ public class FormSD extends WebSetup {
     public void theyShouldSeeAWelcomeMessage() {
         try {
 
-            Assertions.assertEquals("Thanks for submitting the form", formPage.getThanksMessage());
+            Assertions.assertEquals("Thanks for submitting the form", formPageFactory.getThanksMessage());
 
-            Assertions.assertEquals(formPage.getStudentNameMessage(),
-                    formPage.getUser().getName() + " " + formPage.getUser().getLastName());
+            Assertions.assertEquals(formPageFactory.getStudentNameMessage(),
+                    formPageFactory.getUser().getName() + " " + formPageFactory.getUser().getLastName());
 
-            Assertions.assertEquals(formPage.getStudentEmailMessage(),
-                    formPage.getUser().getEmail());
+            Assertions.assertEquals(formPageFactory.getStudentEmailMessage(),
+                    formPageFactory.getUser().getEmail());
 
-            Assertions.assertEquals(formPage.getStudentAddressMessage(),
-                    formPage.getUser().getAddress());
+            Assertions.assertEquals(formPageFactory.getStudentAddressMessage(),
+                    formPageFactory.getUser().getAddress());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

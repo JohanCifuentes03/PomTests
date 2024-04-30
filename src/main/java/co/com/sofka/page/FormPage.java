@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import static co.com.sofka.util.UserCreator.createUser;
 
 public class FormPage extends CommonFunctions {
-    public FormModel user = createUser();
+    private final FormModel user = createUser();
 
     // Locators
     private final By PRACTICE_FORM_LI = By.xpath("//span[text() = 'Practice Form']");
@@ -45,7 +45,6 @@ public class FormPage extends CommonFunctions {
 
     // validate data card
     private final By THANKS_MESSAGE = By.id("example-modal-sizes-title-lg");
-
     private final By STUDENT_NAME = By.xpath("//tbody/tr[1]/td[2]");
     private final By STUDENT_EMAIL = By.xpath("//tbody/tr[2]/td[2]");
     private final By STUDENT_ADDRESS = By.xpath("//tbody/tr[9]/td[2]");
@@ -57,6 +56,7 @@ public class FormPage extends CommonFunctions {
 
     // Functions
     public void fillOutForm() {
+        scrollTo(SUBMIT_BTN);
         basicUserData();
         date();
         address();
@@ -74,7 +74,6 @@ public class FormPage extends CommonFunctions {
     }
 
     private void address() {
-        scrollTo(SUBMIT_BTN);
         clickSelection(STATE_FIELD);
         clickSelection(STATE_OPTION);
         clickSelection(CITY_FIELD);
