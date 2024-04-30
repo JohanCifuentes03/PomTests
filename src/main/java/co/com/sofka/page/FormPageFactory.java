@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-import static co.com.sofka.util.UserCreator.createUser;
+import static co.com.sofka.util.ModelCreator.createUser;
 
 public class FormPageFactory extends CommonFunctions {
     private final FormModel user = createUser();
@@ -103,6 +103,13 @@ public class FormPageFactory extends CommonFunctions {
     private WebElement STUDENT_ADDRESS;
 
 
+    // Scroll objective element
+    @CacheLookup
+    @FindBy(id = "Ad.Plus-970x250-2")
+    private WebElement SCROLL_OBJECTIVE;
+
+
+
     public FormPageFactory(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -114,7 +121,6 @@ public class FormPageFactory extends CommonFunctions {
     }
 
     private void basicUserData() {
-        scrollTo(SUBMIT_BTN);
         typeInto(NAME_FIELD, user.getName());
         typeInto(LAST_NAME_FIELD, user.getLastName());
         typeInto(EMAIL_FIELD, user.getEmail());
@@ -126,6 +132,7 @@ public class FormPageFactory extends CommonFunctions {
     }
 
     private void address() {
+        scrollTo(SCROLL_OBJECTIVE);
         clickSelection(STATE_FIELD);
         clickSelection(STATE_OPTION);
         clickSelection(CITY_FIELD);
@@ -134,6 +141,7 @@ public class FormPageFactory extends CommonFunctions {
     }
 
     private void date() {
+        scrollTo(SUBMIT_BTN);
         clickSelection(BIRTH_FIELD);
         Select monthSelect = new Select(MONTH_SELECT);
         monthSelect.selectByValue("9");

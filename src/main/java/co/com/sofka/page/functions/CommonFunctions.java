@@ -1,9 +1,6 @@
 package co.com.sofka.page.functions;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 public class CommonFunctions {
     protected final WebDriver driver;
@@ -20,32 +17,38 @@ public class CommonFunctions {
         element.sendKeys(text);
     }
 
-    protected void clickSelection(By locator){
+    protected void clickSelection(By locator) {
         driver.findElement(locator).click();
     }
 
-    protected void clickSelection(WebElement element){
+    protected void clickSelection(WebElement element) {
         element.click();
     }
-    protected void sendKeys(By locator, String text){
+
+    protected void sendKeys(By locator, String text) {
         driver.findElement(locator).sendKeys(text);
     }
 
-    protected void scrollTo(By locator){
-        JavascriptExecutor jse =  (JavascriptExecutor) driver;
+    protected void scrollTo(By locator) {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(locator));
     }
-    protected void scrollTo(WebElement element){
-        JavascriptExecutor jse =  (JavascriptExecutor) driver;
+
+    protected void scrollTo(WebElement element) {
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].scrollIntoView();", element);
     }
 
-    protected String getText(By locator){
+    protected String getText(By locator) {
         return driver.findElement(locator).getText();
     }
 
-    protected String getText(WebElement element){
+    protected String getText(WebElement element) {
         return element.getText();
+    }
+
+    protected String getText(Alert alert) {
+        return alert.getText();
     }
 
 }

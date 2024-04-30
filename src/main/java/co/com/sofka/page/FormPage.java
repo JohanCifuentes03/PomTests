@@ -7,7 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import static co.com.sofka.util.UserCreator.createUser;
+import static co.com.sofka.util.ModelCreator.createUser;
 
 public class FormPage extends CommonFunctions {
     private final FormModel user = createUser();

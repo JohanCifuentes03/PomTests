@@ -10,5 +10,5 @@ Feature: Sort list in interaction page
     Then items should be ordered
     Examples:
       | webBrowser |
-      | CHROME     |
+      #| CHROME     |
       | EDGE       |

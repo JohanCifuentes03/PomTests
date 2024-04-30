@@ -1,11 +1,12 @@
 package co.com.sofka.util;
 
+import co.com.sofka.model.AlertsModel;
 import co.com.sofka.model.FormModel;
 import com.github.javafaker.Faker;
 
-public class UserCreator {
+public class ModelCreator {
+    private static final Faker faker = new Faker();
     public static FormModel createUser(){
-        Faker faker = new Faker();
         FormModel user = new FormModel();
         user.setName(faker.name().firstName());
         user.setLastName(faker.name().lastName());
@@ -14,5 +15,11 @@ public class UserCreator {
         user.setSubject(faker.howIMetYourMother().catchPhrase());
         user.setAddress(faker.address().fullAddress());
         return user;
+    }
+
+    public static AlertsModel createAlertsModel(){
+        AlertsModel alertsModel = new AlertsModel();
+        alertsModel.setPromptMessage(faker.howIMetYourMother().catchPhrase());
+        return alertsModel;
     }
 }
