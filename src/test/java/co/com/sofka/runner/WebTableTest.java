@@ -1,17 +1,16 @@
 package co.com.sofka.runner;
 
+
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
-import org.testng.annotations.Test;
-
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features/user_register.feature",
+        features = "src/test/resources/features/web_table.feature",
         glue = "co.com.sofka.stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         publish = true
 )
-public class FormTest {
+public class WebTableTest {
 }
