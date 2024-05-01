@@ -9,7 +9,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 
 public class WebSetup {
     private static final String DEMO_QA_URL = "https://demoqa.com/";
-    protected static WebDriver driver;
+    public static WebDriver driver;
 
     private void setupWebDriverUrl(WebBrowser webBrowser) {
         switch (webBrowser) {

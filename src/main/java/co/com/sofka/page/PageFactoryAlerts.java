@@ -17,7 +17,7 @@ import java.time.Duration;
 
 import static co.com.sofka.util.ModelCreator.createAlertsModel;
 
-public class AlertsPageFactory extends CommonFunctions {
+public class PageFactoryAlerts extends CommonFunctions {
 
     private final AlertsModel alertsModel = createAlertsModel();
 
@@ -39,7 +39,6 @@ public class AlertsPageFactory extends CommonFunctions {
     private WebElement BUTTON_TIMER_ALERT;
 
 
-
     // Confirm alert
     @CacheLookup
     @FindBy(id = "confirmButton")
@@ -48,7 +47,6 @@ public class AlertsPageFactory extends CommonFunctions {
     @FindBy(id = "confirmResult")
     private WebElement CONFIRM_ALERT_MSG;
     private String confirmAlertMessage;
-
 
 
     // Prompt alert
@@ -61,7 +59,7 @@ public class AlertsPageFactory extends CommonFunctions {
     private String promptAlertMessage;
 
 
-    public AlertsPageFactory(WebDriver driver) {
+    public PageFactoryAlerts(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -78,7 +76,7 @@ public class AlertsPageFactory extends CommonFunctions {
         openBasicAlert();
         Wait<WebDriver> wait =
                 new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(3))
+                        .withTimeout(Duration.ofSeconds(4))
                         .pollingEvery(Duration.ofMillis(300))
                         .ignoring(ElementNotInteractableException.class);
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
@@ -100,7 +98,7 @@ public class AlertsPageFactory extends CommonFunctions {
         openConfirmAlert();
         Wait<WebDriver> wait =
                 new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(3))
+                        .withTimeout(Duration.ofSeconds(4))
                         .pollingEvery(Duration.ofMillis(300))
                         .ignoring(ElementNotInteractableException.class);
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());

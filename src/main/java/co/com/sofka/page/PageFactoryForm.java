@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import static co.com.sofka.util.ModelCreator.createUser;
 
-public class FormPageFactory extends CommonFunctions {
+public class PageFactoryForm extends CommonFunctions {
     private final FormModel user = createUser();
 
 
@@ -109,11 +109,11 @@ public class FormPageFactory extends CommonFunctions {
     private WebElement SCROLL_OBJECTIVE;
 
 
-
-    public FormPageFactory(WebDriver driver) {
+    public PageFactoryForm(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
     public void fillOutForm() {
         basicUserData();
         date();
@@ -161,6 +161,7 @@ public class FormPageFactory extends CommonFunctions {
     public String getThanksMessage() {
         return getText(THANKS_MESSAGE);
     }
+
     public String getStudentNameMessage() {
         return getText(STUDENT_NAME);
     }

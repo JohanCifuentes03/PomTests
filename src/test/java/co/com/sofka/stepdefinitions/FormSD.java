@@ -1,7 +1,7 @@
 package co.com.sofka.stepdefinitions;
 
-import co.com.sofka.page.FormPageFactory;
-import co.com.sofka.page.MainPage;
+import co.com.sofka.page.PageFactoryForm;
+import co.com.sofka.page.PageFactoryMain;
 import co.com.sofka.setup.WebSetup;
 import co.com.sofka.webenums.WebBrowser;
 import io.cucumber.java.en.Given;
@@ -10,7 +10,7 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 
 public class FormSD extends WebSetup {
-    private FormPageFactory formPageFactory;
+    private PageFactoryForm pageFactoryForm;
 
     @Given("the user is on the demoqa main page using {string}")
     public void theUserIsOnTheDemoqaMainPageUsing(String arg0) {
@@ -26,10 +26,10 @@ public class FormSD extends WebSetup {
     @Given("navigates to the registration form")
     public void navigatesToTheRegistrationForm() {
         try {
-            MainPage mainPage = new MainPage(driver);
-            formPageFactory = new FormPageFactory(driver);
-            mainPage.navigateToFormPage();
-            formPageFactory.openPracticeForm();
+            PageFactoryMain pageFactoryMain = new PageFactoryMain(driver);
+            pageFactoryForm = new PageFactoryForm(driver);
+            pageFactoryMain.navigateToFormPage();
+            pageFactoryForm.openPracticeForm();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
@@ -40,7 +40,7 @@ public class FormSD extends WebSetup {
     @When("they enter their data correctly")
     public void theyEnterTheirDataCorrectly() {
         try {
-            formPageFactory.fillOutForm();
+            pageFactoryForm.fillOutForm();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
@@ -51,7 +51,7 @@ public class FormSD extends WebSetup {
     @When("submit the form")
     public void submitTheForm() {
         try {
-            formPageFactory.submitForm();
+            pageFactoryForm.submitForm();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
@@ -63,21 +63,20 @@ public class FormSD extends WebSetup {
     public void theyShouldSeeAWelcomeMessage() {
         try {
 
-            Assertions.assertEquals("Thanks for submitting the form", formPageFactory.getThanksMessage());
+            Assertions.assertEquals("Thanks for submitting the form", pageFactoryForm.getThanksMessage());
 
-            Assertions.assertEquals(formPageFactory.getStudentNameMessage(),
-                    formPageFactory.getUser().getName() + " " + formPageFactory.getUser().getLastName());
+            Assertions.assertEquals(pageFactoryForm.getStudentNameMessage(),
+                    pageFactoryForm.getUser().getName() + " " + pageFactoryForm.getUser().getLastName());
 
-            Assertions.assertEquals(formPageFactory.getStudentEmailMessage(),
-                    formPageFactory.getUser().getEmail());
+            Assertions.assertEquals(pageFactoryForm.getStudentEmailMessage(),
+                    pageFactoryForm.getUser().getEmail());
 
-            Assertions.assertEquals(formPageFactory.getStudentAddressMessage(),
-                    formPageFactory.getUser().getAddress());
+            Assertions.assertEquals(pageFactoryForm.getStudentAddressMessage(),
+                    pageFactoryForm.getUser().getAddress());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();
-            quiteDrive();
         } finally {
             quiteDrive();
         }

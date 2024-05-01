@@ -1,16 +1,12 @@
 package co.com.sofka.stepdefinitions;
 
-import co.com.sofka.page.MainPage;
+import co.com.sofka.page.PageFactoryMain;
 import co.com.sofka.page.OrderListPage;
 import co.com.sofka.setup.WebSetup;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebElement;
-
-import java.util.Collections;
-import java.util.List;
 
 public class SortableListSD extends WebSetup {
     private OrderListPage orderListPage;
@@ -18,9 +14,9 @@ public class SortableListSD extends WebSetup {
     @Given("navigates to the interactions list page")
     public void navigatesToTheInteractionsListPage() {
         try {
-            MainPage mainPage = new MainPage(driver);
+            PageFactoryMain pageFactoryMain = new PageFactoryMain(driver);
             orderListPage = new OrderListPage(driver);
-            mainPage.navigateToInteractionsPage();
+            pageFactoryMain.navigateToInteractionsPage();
             orderListPage.openSortableListSection();
         } catch (Exception e) {
             System.out.println(e.getMessage());
