@@ -2,6 +2,7 @@ package co.com.sofka.util;
 
 import co.com.sofka.model.AlertsModel;
 import co.com.sofka.model.FormModel;
+import co.com.sofka.model.WebTableModel;
 import com.github.javafaker.Faker;
 
 public class ModelCreator {
@@ -21,5 +22,15 @@ public class ModelCreator {
         AlertsModel alertsModel = new AlertsModel();
         alertsModel.setPromptMessage(faker.howIMetYourMother().catchPhrase());
         return alertsModel;
+    }
+    public static WebTableModel createWebTableModel(){
+        WebTableModel webTableModel = new WebTableModel();
+        webTableModel.setFirstName(faker.name().firstName());
+        webTableModel.setLastName(faker.name().lastName());
+        webTableModel.setAge(Integer.parseInt(faker.numerify("##")));
+        webTableModel.setEmail(faker.internet().emailAddress());
+        webTableModel.setSalary(Integer.parseInt(faker.numerify("######")));
+        webTableModel.setDepartment(faker.address().cityName());
+        return  webTableModel;
     }
 }

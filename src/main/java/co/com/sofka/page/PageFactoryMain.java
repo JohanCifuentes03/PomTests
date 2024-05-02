@@ -18,11 +18,12 @@ public class PageFactoryMain extends CommonFunctions {
     @CacheLookup
     @FindBy(xpath = "//h5[contains(text(), 'Alerts')]/ancestor::div[@class = 'card mt-4 top-card']")
     private WebElement ALERTS_OPTION;
-
-
     @CacheLookup
     @FindBy(xpath = "//h5[contains(text(), 'Widgets')]/ancestor::div[@class = 'card mt-4 top-card']")
     private WebElement WIDGETS_OPTION;
+    @CacheLookup
+    @FindBy(xpath = "//h5[contains(text(), 'Elements')]/ancestor::div[@class = 'card mt-4 top-card']")
+    private WebElement ELEMENTS_OPTION;
 
 
     public PageFactoryMain(WebDriver driver) {
@@ -44,6 +45,9 @@ public class PageFactoryMain extends CommonFunctions {
 
     public void navigateToWidgetsPage() {
         clickSelection(WIDGETS_OPTION);
+    }
+    public void navigateToElementsPage() {
+        clickSelection(ELEMENTS_OPTION);
     }
 
 }

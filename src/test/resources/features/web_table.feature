@@ -10,9 +10,10 @@ Feature: Account Management on DemoQA Platform
     When they search for their account by "<searchCriteria>"
     Then they should see their account details displayed in the web table
     Examples:
-      | webBrowser | searchCriteria |
-      #| CHROME     | Alden          |
-      | EDGE       | Kierra         |
+      | webBrowser | searchCriteria     |
+      #| CHROME     | cierra@example.com |
+      | EDGE       | alden@example.com  |
+
 
   Scenario Outline: Register a New Account
     Given the user is on the demoqa main page using "<webBrowser>"

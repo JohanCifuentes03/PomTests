@@ -6,11 +6,9 @@ public class FormModel {
     private String name;
     private String lastName;
     private String email;
-    private Gender gender;
     private String mobileNumber;
     private String birth;
     private String subject;
-    private List<Hobbies> hobbies;
     private String address;
     private String state;
     private String city;
@@ -42,13 +40,6 @@ public class FormModel {
         this.email = email;
     }
 
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
 
     public String getMobileNumber() {
         return mobileNumber;
@@ -74,13 +65,6 @@ public class FormModel {
         this.subject = subject;
     }
 
-    public List<Hobbies> getHobbies() {
-        return hobbies;
-    }
-
-    public void setHobbies(List<Hobbies> hobbies) {
-        this.hobbies = hobbies;
-    }
 
     public String getAddress() {
         return address;

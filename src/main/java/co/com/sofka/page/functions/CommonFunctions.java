@@ -28,6 +28,9 @@ public class CommonFunctions {
     protected void sendKeys(By locator, String text) {
         driver.findElement(locator).sendKeys(text);
     }
+    protected void sendKeys(WebElement element, String text) {
+        element.sendKeys(text);
+    }
 
     protected void scrollTo(By locator) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
