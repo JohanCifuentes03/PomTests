@@ -54,12 +54,25 @@ public class PageFactoryWebTable extends CommonFunctions {
 
 
     // Search
-    private final WebTableModel foundedTableModel = new WebTableModel();
+    private WebTableModel foundedTableModel = new WebTableModel();
     @CacheLookup
     @FindBy(id = "searchBox")
     private WebElement SEARCH_BOX_INPUT;
     private final String EMAIL_ELEMENTS = "//div[@role = 'rowgroup']//div[@class = 'rt-td'][4]";
     private final String FULL_USER_DATA = "//div[text() = '%s']/ancestor::div[@role = 'row']/div";
+
+
+    // Edit
+    @CacheLookup
+    @FindBy(id = "edit-record-1")
+    private WebElement EDIT_USER_SPAN;
+
+
+    // Delete
+    @CacheLookup
+    @FindBy(id = "delete-record-1")
+    private WebElement DELETE_USER_SPAN;
+
 
 
     public PageFactoryWebTable(WebDriver driver) {
@@ -73,7 +86,7 @@ public class PageFactoryWebTable extends CommonFunctions {
 
     public void createUser(){
         openCreateForm();
-        fillOutFormData();
+        fillOutFormData(createdTableModel);
         submitUserData();
     }
 
@@ -81,13 +94,13 @@ public class PageFactoryWebTable extends CommonFunctions {
         clickSelection(CREATE_BTN);
     }
 
-    private void fillOutFormData() {
-        sendKeys(FIRSTNAME_FIELD, createdTableModel.getFirstName());
-        sendKeys(LASTNAME_FIELD, createdTableModel.getLastName());
-        sendKeys(AGE_FIELD, String.valueOf(createdTableModel.getAge()));
-        sendKeys(EMAIL_FIELD, createdTableModel.getEmail());
-        sendKeys(SALARY_FIELD, String.valueOf(createdTableModel.getSalary()));
-        sendKeys(DEPARTMENT_FIELD, createdTableModel.getDepartment());
+    private void fillOutFormData(WebTableModel webTableModel) {
+        sendKeys(FIRSTNAME_FIELD, webTableModel.getFirstName());
+        sendKeys(LASTNAME_FIELD, webTableModel.getLastName());
+        sendKeys(AGE_FIELD, String.valueOf(webTableModel.getAge()));
+        sendKeys(EMAIL_FIELD, webTableModel.getEmail());
+        sendKeys(SALARY_FIELD, String.valueOf(webTableModel.getSalary()));
+        sendKeys(DEPARTMENT_FIELD, webTableModel.getDepartment());
     }
     private void submitUserData() {
         clickSelection(SUBMIT_BTN);
@@ -121,6 +134,41 @@ public class PageFactoryWebTable extends CommonFunctions {
                 setUserModelData(String.format(FULL_USER_DATA, email));
             }
         }
+    }
+
+
+    //update
+    public void updateUserModel(String email){
+        searchForEmail(email);
+        openEditUserForm();
+        cleanInputs();
+        String saveEmail = foundedTableModel.getEmail();
+        foundedTableModel = createWebTableModel();
+        foundedTableModel.setEmail(saveEmail);
+        fillOutFormData(foundedTableModel);
+        submitUserData();
+    }
+
+
+
+    private void openEditUserForm() {
+        clickSelection(EDIT_USER_SPAN);
+    }
+
+    private void cleanInputs() {
+        cleanFields(FIRSTNAME_FIELD);
+        cleanFields(LASTNAME_FIELD);
+        cleanFields(EMAIL_FIELD);
+        cleanFields(AGE_FIELD);
+        cleanFields(SALARY_FIELD);
+        cleanFields(DEPARTMENT_FIELD);
+    }
+
+
+    // Delete
+    public void deleteUser(String email){
+        searchForEmail(email);
+        clickSelection(DELETE_USER_SPAN);
     }
 
     public WebTableModel getCreatedTableModel() {

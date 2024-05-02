@@ -10,9 +10,9 @@ Feature: Account Management on DemoQA Platform
     When they search for their account by "<searchCriteria>"
     Then they should see their account details displayed in the web table
     Examples:
-      | webBrowser | searchCriteria     |
+      | webBrowser | searchCriteria    |
       #| CHROME     | cierra@example.com |
-      | EDGE       | alden@example.com  |
+      | EDGE       | alden@example.com |
 
 
   Scenario Outline: Register a New Account
@@ -28,20 +28,20 @@ Feature: Account Management on DemoQA Platform
   Scenario Outline: Update Account Details
     Given the user is on the demoqa main page using "<webBrowser>"
     And navigates to the account management page
-    When the user updates their account's name from "<currentUserName>" to "<newUserName>"
+    When the user "<userEmail>" updates their account's data
     Then they should see their data updated
     Examples:
-      | webBrowser | currentUserName | newUserName |
-      #| CHROME     | Cierra          | Johan       |
-      | EDGE       | Alden           | David       |
+      | webBrowser | userEmail          |
+      #| CHROME     | |
+      | EDGE       | cierra@example.com |
 
   Scenario Outline: Delete Account
     Given the user is on the demoqa main page using "<webBrowser>"
     And navigates to the account management page
-    When they delete their account
+    When the user "<userEmail>" deletes its accounts
     Then they should not see their data in the table
     Examples:
-      | webBrowser |
+      | webBrowser | userEmail          |
       #| CHROME     |
-      | EDGE       |
+      | EDGE       | cierra@example.com |
 

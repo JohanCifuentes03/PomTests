@@ -27,8 +27,6 @@ public class CreateUserWebTableSD extends WebSetup {
             WebTableModel createdModel = pageFactoryWebTable.getCreatedTableModel();
             pageFactoryWebTable.searchForEmail(createdModel.getEmail());
             WebTableModel foundedModel = pageFactoryWebTable.getFoundedTableModel();
-            System.out.println(createdModel);
-            System.out.println(foundedModel);
             Assertions.assertEquals(createdModel.getEmail(), foundedModel.getEmail());
             Assertions.assertEquals(createdModel.getFirstName(), foundedModel.getFirstName());
             Assertions.assertEquals(createdModel.getLastName(), foundedModel.getLastName());
