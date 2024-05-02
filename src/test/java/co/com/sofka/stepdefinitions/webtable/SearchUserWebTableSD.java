@@ -22,6 +22,7 @@ public class SearchUserWebTableSD extends WebSetup {
             pageFactoryWebTable = new PageFactoryWebTable(driver);
             pageFactoryMain.navigateToElementsPage();
             pageFactoryWebTable.openPracticeWebTable();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();

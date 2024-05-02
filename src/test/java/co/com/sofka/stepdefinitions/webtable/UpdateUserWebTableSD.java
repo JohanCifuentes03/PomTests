@@ -18,6 +18,7 @@ public class UpdateUserWebTableSD extends WebSetup {
             pageFactoryWebTable = new PageFactoryWebTable(driver);
             pageFactoryWebTable.updateUserModel(email);
             savedUserEmail = email;
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();

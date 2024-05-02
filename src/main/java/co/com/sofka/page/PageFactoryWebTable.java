@@ -22,7 +22,6 @@ public class PageFactoryWebTable extends CommonFunctions {
     private WebElement PRACTICE_TABLE_LI;
 
 
-
     // Create
     private final WebTableModel createdTableModel = createWebTableModel();
     @CacheLookup
@@ -52,7 +51,6 @@ public class PageFactoryWebTable extends CommonFunctions {
     private WebElement SUBMIT_BTN;
 
 
-
     // Search
     private WebTableModel foundedTableModel = new WebTableModel();
     @CacheLookup
@@ -74,7 +72,6 @@ public class PageFactoryWebTable extends CommonFunctions {
     private WebElement DELETE_USER_SPAN;
 
 
-
     public PageFactoryWebTable(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -84,7 +81,7 @@ public class PageFactoryWebTable extends CommonFunctions {
         clickSelection(PRACTICE_TABLE_LI);
     }
 
-    public void createUser(){
+    public void createUser() {
         openCreateForm();
         fillOutFormData(createdTableModel);
         submitUserData();
@@ -95,18 +92,19 @@ public class PageFactoryWebTable extends CommonFunctions {
     }
 
     private void fillOutFormData(WebTableModel webTableModel) {
+        sendKeys(EMAIL_FIELD, webTableModel.getEmail());
         sendKeys(FIRSTNAME_FIELD, webTableModel.getFirstName());
         sendKeys(LASTNAME_FIELD, webTableModel.getLastName());
         sendKeys(AGE_FIELD, String.valueOf(webTableModel.getAge()));
-        sendKeys(EMAIL_FIELD, webTableModel.getEmail());
         sendKeys(SALARY_FIELD, String.valueOf(webTableModel.getSalary()));
         sendKeys(DEPARTMENT_FIELD, webTableModel.getDepartment());
     }
+
     private void submitUserData() {
         clickSelection(SUBMIT_BTN);
     }
 
-    private void setUserModelData(String locator){
+    private void setUserModelData(String locator) {
         List<WebElement> userData = driver.findElements(By.xpath(locator));
         foundedTableModel.setFirstName(getText(userData.get(0)));
         foundedTableModel.setLastName(getText(userData.get(1)));
@@ -138,17 +136,17 @@ public class PageFactoryWebTable extends CommonFunctions {
 
 
     //update
-    public void updateUserModel(String email){
+    public void updateUserModel(String email) {
         searchForEmail(email);
         openEditUserForm();
         cleanInputs();
-        String saveEmail = foundedTableModel.getEmail();
+        String savedEmail = foundedTableModel.getEmail();
         foundedTableModel = createWebTableModel();
-        foundedTableModel.setEmail(saveEmail);
+        foundedTableModel.setEmail(savedEmail);
         fillOutFormData(foundedTableModel);
         submitUserData();
-    }
 
+    }
 
 
     private void openEditUserForm() {
@@ -156,19 +154,20 @@ public class PageFactoryWebTable extends CommonFunctions {
     }
 
     private void cleanInputs() {
-        cleanFields(FIRSTNAME_FIELD);
-        cleanFields(LASTNAME_FIELD);
-        cleanFields(EMAIL_FIELD);
-        cleanFields(AGE_FIELD);
-        cleanFields(SALARY_FIELD);
-        cleanFields(DEPARTMENT_FIELD);
+        cleanField(FIRSTNAME_FIELD);
+        cleanField(LASTNAME_FIELD);
+        cleanField(EMAIL_FIELD);
+        cleanField(AGE_FIELD);
+        cleanField(SALARY_FIELD);
+        cleanField(DEPARTMENT_FIELD);
     }
 
-
     // Delete
-    public void deleteUser(String email){
+    public void deleteUser(String email) {
         searchForEmail(email);
         clickSelection(DELETE_USER_SPAN);
+        cleanField(SEARCH_BOX_INPUT);
+        foundedTableModel = null;
     }
 
     public WebTableModel getCreatedTableModel() {

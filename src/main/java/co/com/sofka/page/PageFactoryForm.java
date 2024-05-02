@@ -2,13 +2,19 @@ package co.com.sofka.page;
 
 import co.com.sofka.model.FormModel;
 import co.com.sofka.page.functions.CommonFunctions;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+
+import java.time.Duration;
 
 import static co.com.sofka.util.ModelCreator.createUser;
 
@@ -159,6 +165,12 @@ public class PageFactoryForm extends CommonFunctions {
     }
 
     public String getThanksMessage() {
+        Wait<WebDriver> wait =
+                new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(2))
+                        .pollingEvery(Duration.ofMillis(300))
+                        .ignoring(ElementNotInteractableException.class);
+        wait.until(ExpectedConditions.visibilityOf(THANKS_MESSAGE));
         return getText(THANKS_MESSAGE);
     }
 

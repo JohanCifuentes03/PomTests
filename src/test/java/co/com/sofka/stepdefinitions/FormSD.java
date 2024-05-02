@@ -64,13 +64,10 @@ public class FormSD extends WebSetup {
         try {
 
             Assertions.assertEquals("Thanks for submitting the form", pageFactoryForm.getThanksMessage());
-
             Assertions.assertEquals(pageFactoryForm.getStudentNameMessage(),
                     pageFactoryForm.getUser().getName() + " " + pageFactoryForm.getUser().getLastName());
-
             Assertions.assertEquals(pageFactoryForm.getStudentEmailMessage(),
                     pageFactoryForm.getUser().getEmail());
-
             Assertions.assertEquals(pageFactoryForm.getStudentAddressMessage(),
                     pageFactoryForm.getUser().getAddress());
 

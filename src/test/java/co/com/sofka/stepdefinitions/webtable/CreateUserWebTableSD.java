@@ -15,6 +15,8 @@ public class CreateUserWebTableSD extends WebSetup {
         try {
             pageFactoryWebTable = new PageFactoryWebTable(driver);
             pageFactoryWebTable.createUser();
+
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             Assertions.fail();

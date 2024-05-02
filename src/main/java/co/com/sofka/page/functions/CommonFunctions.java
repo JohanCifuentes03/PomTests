@@ -36,7 +36,7 @@ public class CommonFunctions {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(locator));
     }
-    protected void cleanFields(WebElement element){
+    protected void cleanField(WebElement element){
         element.clear();
     }
 
