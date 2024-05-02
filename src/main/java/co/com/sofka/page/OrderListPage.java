@@ -5,7 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class OrderListPage extends CommonFunctions {
@@ -30,11 +32,7 @@ public class OrderListPage extends CommonFunctions {
 
         int lastIndex = webElements.size() - 1;
         for (int i = 0; i < webElements.size(); i++) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
             WebElement firstElement = webElements.get(0);
             WebElement lastElement = webElements.get(lastIndex -  i);
             Actions actions = new Actions(driver);
