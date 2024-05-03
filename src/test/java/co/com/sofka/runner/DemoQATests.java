@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         glue = "co.com.sofka.stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         publish = true,
-        plugin = { "pretty", "html:C:/Users/Johan Cifuentes/Desktop/JAVA/PomTests/src/test/cucumber-output/cucumber-reports.html" },
+        plugin = { "pretty", "html:C:/Users/Johan Cifuentes/Desktop/JAVA/TestAutomationReports/cucumber-output/cucumber-reports.html" },
         monochrome = true
 )
 public class DemoQATests {
